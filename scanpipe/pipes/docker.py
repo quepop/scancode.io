@@ -115,7 +115,9 @@ def scan_image_for_system_packages(project, image, detect_licenses=True):
     package_getter = partial(
         rootfs.PACKAGE_GETTER_BY_DISTRO[distro_id],
         distro=distro_id,
+        version=image.distro.version_id,
         detect_licenses=detect_licenses,
+        project=project,
     )
 
     installed_packages = image.get_installed_packages(package_getter)
